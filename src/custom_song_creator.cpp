@@ -2937,11 +2937,11 @@ static void display_cel_data(CelData& celData, FuserEnums::KeyMode::Value curren
 					ImGui::EndChild();
 					ImGui::BeginChild("PickupButtons", ImVec2(windowSize.x / 3, 145));
 					if (ImGui::InputFloat("Pickup Beat", &pickupInput, 0.0F, 0.0F, "%.2f", ImGuiInputTextFlags_CharsDecimal)) {
-						pickupInput = std::round(std::clamp(pickupInput, 0.0F, 128.0F) * 100) / 100;
+						pickupInput = std::round(std::clamp(pickupInput, 0.0F, 2048.0F) * 100) / 100;
 					}
 					if (ImGui::Button("Add Pickup")) {
 						unsavedChanges = true;
-						pickupInput = std::round(std::clamp(pickupInput, 0.0F, 128.0F) * 100) / 100;
+						pickupInput = std::round(std::clamp(pickupInput, 0.0F, 2048.0F) * 100) / 100;
 
 						if (celData.pickupArray->values.size() > 0) {
 							std::vector<float> pickups;
@@ -2981,7 +2981,7 @@ static void display_cel_data(CelData& celData, FuserEnums::KeyMode::Value curren
 					ImGui::SameLine();
 					if (ImGui::Button("Update Pickup") && celData.pickupArray->values.size() > 0) {
 						unsavedChanges = true;
-						pickupInput = std::round(std::clamp(pickupInput, 0.0F, 128.0F) * 100) / 100;
+						pickupInput = std::round(std::clamp(pickupInput, 0.0F, 2048.0F) * 100) / 100;
 						if (celData.pickupArray->values.size() == 1) {
 							std::get<PrimitiveProperty<float>>(celData.pickupArray->values[curPickup]->v).data = pickupInput;
 						}
